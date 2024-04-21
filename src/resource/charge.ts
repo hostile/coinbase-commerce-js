@@ -57,10 +57,10 @@ export class Charge extends ApiResource implements
   }
 
   public static async retrieve(data: NodeJS.Dict<any> & { id: string }): Promise<Charge> {
-    return new Charge({data}).retrieve();
+    return new Charge(data as ChargeMeta & { id: string }).retrieve();
   }
 
   public static async create(data: Omit<ChargeMeta, 'id'>): Promise<Charge> {
-    return new Charge({data}).retrieve();
+    return new Charge(data as ChargeMeta).save();
   }
 }

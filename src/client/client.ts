@@ -10,7 +10,7 @@ import {
 
 export interface Config {
   apiKey: string;
-  timeout: number;
+  timeout?: number;
   organizationName?: string;
   webhookSecret?: string;
   redirects?: NodeJS.Dict<string>;
@@ -34,6 +34,7 @@ export function http(): AxiosInstance {
       'X-CC-Api-Key': config.apiKey,
       'X-CC-Version': '2018-03-22'
     },
+    timeout: config.timeout,
     transformResponse: (data: any, _headers: AxiosResponseHeaders, status: number) => {
       switch (status) {
         case 400:
